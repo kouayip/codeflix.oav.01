@@ -8,14 +8,30 @@ const EXT_INI = ".ini";
 const parse = function (filename) {
   const ext = path.extname(filename);
   if (ext.toLowerCase() === EXT_ENV) {
-    parseENV();
+    parseENV(filename);
   } else if (ext.toLowerCase() === EXT_INI) {
-    parseINIT();
+    parseINIT(filename);
+  } else {
+    console.error("Error extension file", ext);
   }
 };
 
-const parseINIT = function () {};
+const parseINIT = function (filename) {
+  fs.readFile(filename, "utf8", function (err, data) {
+    if (err) {
+      return console.error(err);
+    }
+    console.log(data);
+  });
+};
 
-const parseENV = function () {};
+const parseENV = function (filename) {
+  fs.readFile(filename, "utf8", function (err, data) {
+    if (err) {
+      return console.error(err);
+    }
+    console.log(data);
+  });
+};
 
 parse(process.argv[2]);
