@@ -23,7 +23,7 @@ const parseINIT = function (filename, ext) {
   const fileShotName = filename.replace(ext, "");
   const contents = fs.readFileSync(filename).toString();
   const matcher = contents.match(REGEX_INI);
-  const parse = parserINIValues(matcher.sort());
+  const parse = parserINIValues(matcher);
   const jsonString = JSON.stringify(parse);
   const filenameGenerate = fileGenerator(fileShotName);
   createFile(filenameGenerate, jsonString);
